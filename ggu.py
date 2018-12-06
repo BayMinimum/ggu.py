@@ -27,6 +27,10 @@ class Ggu문법오류(Exception):
     pass
 
 
+class Ggu런타임오류(Exception):
+    pass
+
+
 def next_allowed(c):
     if c in INT_VAR_A or c in EXT_A:
         return VARS + EXT_A + PRINT + INPUT + ZERO
@@ -86,12 +90,25 @@ def main():
     if len(L) == 0:
         print('입력 파일이 비어 있습니다.')
         return
-    run()
-
-
-def run():
     while 0 <= var['뚜'] < len(lines):
-        pass
+        line_num = var['뚜']
+        line = lines[line_num]
+        if line[0] in COND:
+            run(line[1:len(line)-1])
+            is_zero = var[line[1]] == 0
+            var['뚜'] = line_num
+            if line[0] == '"':
+                var['뚜'] += 1 if is_zero else 2
+            else:
+                var['뚜'] += 2 if is_zero else 1
+        else:
+            run(line)
+            if line_num == var['뚜']:
+                var['뚜'] += 1
+
+
+def run(line):
+    pass
 
 
 if __name__ == '__main__':
