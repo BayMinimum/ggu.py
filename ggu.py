@@ -1,24 +1,26 @@
 #!/usr/bin/python3
 import sys
+from collections import deque
 
 
-INT_VAR_U = '꾸뀨뿌쀼'
+INT_VAR_U = '꾸뀨뿌쀼뚜'
 INT_VAR_A = '까꺄'
 EXT_U = '우'
 EXT_A = '아'
 STACK = '끼'
 QUEUE = '삐'
 EXT_E = '이'
-CURSOR = '뚜'
 PRINT = '!'
 INPUT = '?'
 ZERO = '.'
 COND = '\'"'
-VARS = INT_VAR_A + INT_VAR_U + STACK + QUEUE + CURSOR
+VARS = INT_VAR_A + INT_VAR_U + STACK + QUEUE
 ALLOWED_CHARS = '꾸뀨까꺄끼뿌쀼삐뚜우아!?\'".'
 
 lines = []
-cursor = 0
+var = {'꾸': 0, '뀨': 0, '뿌': 0, '쀼': 0, '뚜': 0, '까': 0, '꺄': 0, '?': -1}
+stack = []
+queue = deque()
 
 
 class Ggu문법오류(Exception):
@@ -35,7 +37,7 @@ def next_allowed(c):
     if c in ZERO or c in INPUT:
         return None
     if c in PRINT:
-        return ALLOWED_CHARS
+        return VARS + PRINT + INPUT + ZERO
 
 
 def checkggu(line):
@@ -88,7 +90,7 @@ def main():
 
 
 def run():
-    while 0 <= cursor < len(lines):
+    while 0 <= var['뚜'] < len(lines):
         pass
 
 
