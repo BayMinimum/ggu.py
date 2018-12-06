@@ -37,7 +37,7 @@ var = []
 stack = []
 que = []
 
-def declare_var(varName):
+def declareVar(varName):
     assert varName not in VAR
     assert varName[0] in ["꾸", "뀨", "까", "꺄", "뿌", "쀼"]
     s = {"꾸" : "우", "뀨" : "우", "까" : "아", "꺄" : "아", "뿌" : "우", "쀼" : "우"}
