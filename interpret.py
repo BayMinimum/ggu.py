@@ -37,27 +37,32 @@ var = []
 stack = []
 que = []
 
+type_var = 1
+type_stack = 2
+type_que = 3
+
 def declareVar(varName):
     assert varName not in VAR
-    assert varName[0] in ["꾸", "뀨", "까", "꺄", "뿌", "쀼"]
-    s = {"꾸" : "우", "뀨" : "우", "까" : "아", "꺄" : "아", "뿌" : "우", "쀼" : "우"}
-    for i in range(1, len(varName)):
-        assert varName[i] == s[varName[0]]
+    assert varName in ["꾸", "뀨", "까", "꺄", "뿌", "쀼"]
     var.append(0)
     VAR[varName] = len(var)-1
 
 def declareStack(stackName):
     assert stackName not in STACK
-    assert stackName[0] == "끼"
-    for i in range(1, len(stackName)):
-        assert stackName[i] == "이"
+    assert stackName == "끼"
     stack.append([])
     STACK[stackName] = len(stack)-1
 
-def declareQueue(queName):
+def declareQue(queName):
     assert queName not in QUE
-    assert queName[0] == "삐"
-    for i in range(1, len(queName)):
-        assert queName[i] == "이"
+    assert queName == "삐"
     que.append(queue())
     QUE[queName] = len(que)-1
+    
+def addVar(command):
+    assert command[0] in VAR
+    s = {"꾸" : "우", "뀨" : "우", "까" : "아", "꺄" : "아", "뿌" : "우", "쀼" : "우"}
+    for i in range(1, len(command)):
+        assert command[i] == s[command[0]]
+    var[VAR[command[0]]] += len(command) - 1
+
